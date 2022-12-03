@@ -1,33 +1,45 @@
 import { Router } from 'express';
-import { checkAuth } from './middlewares/checkAuth';
-import { CreateProjectController } from './modules/projects/useCases/createProject/CreateProjectController';
-import { UserAuthController } from './modules/users/useCases/authenticateUser/UserAuthController';
-import { CreateUserController } from './modules/users/useCases/createUser/CreateUserController';
-import { FindAllProjectsFromUserController } from './modules/projects/useCases/findAllProjectsFromUser/FindAllProjectsFromUserController';
-import { FindProjectByIdController } from './modules/projects/useCases/findProjectById/FindProjectByIdController';
-import { UpdateProjectController } from './modules/projects/useCases/updateProject/UpdateProjectController';
-import { FinishProjectController } from './modules/projects/useCases/finishProject/FinishProjectController';
-import { DeleteProjectController } from './modules/projects/useCases/deleteProject/DeleteProjectController';
+import { checkAuth } from '@middlewares/checkAuth';
+import {
+  CreateUserController,
+  UserAuthController,
+} from '@modules/users/useCases/';
+import {
+  CreateProjectController,
+  FindAllProjectsFromUserController,
+  FindProjectByIdController,
+  UpdateProjectController,
+  FinishProjectController,
+  DeleteProjectController,
+} from '@modules/projects/useCases/';
 
 const router = Router();
 
+// Users
 const userController = new CreateUserController();
+router.post('/users', userController.handle);
+
 const userAuthController = new UserAuthController();
+router.post('/auth', userAuthController.handle);
+
+// Projects
 const createProjectController = new CreateProjectController();
+router.post('/projects', checkAuth, createProjectController.handle);
+
 const findAllProjectsFromUserController =
   new FindAllProjectsFromUserController();
-const findProjectByIdController = new FindProjectByIdController();
-const updateProjectController = new UpdateProjectController();
-const finishProjectController = new FinishProjectController();
-const deleteProjectController = new DeleteProjectController();
-
-router.post('/users', userController.handle);
-router.post('/auth', userAuthController.handle);
-router.post('/projects', checkAuth, createProjectController.handle);
 router.get('/projects', checkAuth, findAllProjectsFromUserController.handle);
+
+const findProjectByIdController = new FindProjectByIdController();
 router.get('/project', checkAuth, findProjectByIdController.handle);
+
+const updateProjectController = new UpdateProjectController();
 router.put('/projects/:id', checkAuth, updateProjectController.handle);
+
+const finishProjectController = new FinishProjectController();
 router.patch('/projects/:id/done', checkAuth, finishProjectController.handle);
+
+const deleteProjectController = new DeleteProjectController();
 router.delete('/projects/:id', checkAuth, deleteProjectController.handle);
 
 export { router };

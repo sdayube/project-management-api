@@ -1,6 +1,6 @@
 import { hash } from 'bcrypt';
-import { prisma } from '../../../../database/prismaClient';
-import { HttpError } from '../../../../errors/HttpError';
+import { prisma } from '@database/prismaClient';
+import { HttpError } from '@errors/HttpError';
 
 interface ICreateUser {
   name: string;

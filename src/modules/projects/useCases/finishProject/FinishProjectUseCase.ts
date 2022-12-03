@@ -1,6 +1,6 @@
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
-import { prisma } from '../../../../database/prismaClient';
-import { HttpError } from '../../../../errors/HttpError';
+import { prisma } from '@database/prismaClient';
+import { HttpError } from '@errors/HttpError';
 
 interface IFinishProject {
   id: string;

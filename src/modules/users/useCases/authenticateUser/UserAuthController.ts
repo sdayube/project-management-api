@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { HttpError } from '../../../../errors/HttpError';
 import { UserAuthUseCase } from './UserAuthUseCase';
 
 export class UserAuthController {

@@ -1,5 +1,4 @@
-import { prisma } from '../../../../database/prismaClient';
-import { HttpError } from '../../../../errors/HttpError';
+import { prisma } from '@database/prismaClient';
 
 interface IFindAllProjectsFromUser {
   username: string;

@@ -1,7 +1,7 @@
 import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
-import { prisma } from '../../../../database/prismaClient';
-import { HttpError } from '../../../../errors/HttpError';
+import { prisma } from '@database/prismaClient';
+import { HttpError } from '@errors/HttpError';
 
 interface IUserAuthentication {
   username: string;

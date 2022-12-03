@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
-import { prisma } from '../database/prismaClient';
-import { HttpError } from '../errors/HttpError';
+import { prisma } from '@database/prismaClient';
+import { HttpError } from '@errors/HttpError';
 
 export async function checkAuth(
   request: Request,

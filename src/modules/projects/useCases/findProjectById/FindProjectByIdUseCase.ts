@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { prisma } from '../../../../database/prismaClient';
-import { HttpError } from '../../../../errors/HttpError';
+import { prisma } from '@database/prismaClient';
+import { HttpError } from '@errors/HttpError';
 
 interface IFindProjectById {
   id: string;
