@@ -7,6 +7,7 @@ import { FindAllProjectsFromUserController } from './modules/projects/useCases/f
 import { FindProjectByIdController } from './modules/projects/useCases/findProjectById/FindProjectByIdController';
 import { UpdateProjectController } from './modules/projects/useCases/updateProject/UpdateProjectController';
 import { FinishProjectController } from './modules/projects/useCases/finishProject/FinishProjectController';
+import { DeleteProjectController } from './modules/projects/useCases/deleteProject/DeleteProjectController';
 
 const router = Router();
 
@@ -18,6 +19,7 @@ const findAllProjectsFromUserController =
 const findProjectByIdController = new FindProjectByIdController();
 const updateProjectController = new UpdateProjectController();
 const finishProjectController = new FinishProjectController();
+const deleteProjectController = new DeleteProjectController();
 
 router.post('/users', userController.handle);
 router.post('/auth', userAuthController.handle);
@@ -26,5 +28,6 @@ router.get('/projects', checkAuth, findAllProjectsFromUserController.handle);
 router.get('/project', checkAuth, findProjectByIdController.handle);
 router.put('/projects/:id', checkAuth, updateProjectController.handle);
 router.patch('/projects/:id/done', checkAuth, finishProjectController.handle);
+router.delete('/projects/:id', checkAuth, deleteProjectController.handle);
 
 export { router };
