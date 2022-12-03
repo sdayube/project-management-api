@@ -11,9 +11,7 @@ interface IUserAuthentication {
 export class UserAuthUseCase {
   async execute({ username, password }: IUserAuthentication) {
     const user = await prisma.user.findUnique({
-      where: {
-        username,
-      },
+      where: { username },
     });
 
     if (!user) {
