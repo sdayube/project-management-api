@@ -2,25 +2,16 @@ import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { prisma } from '../../../../database/prismaClient';
 import { HttpError } from '../../../../errors/HttpError';
 
-interface IUpdateProject {
+interface IFinishProject {
   id: string;
-  title: string;
-  zip_code: number;
-  cost: number;
-  deadline: string;
 }
 
-export class UpdateProjectUseCase {
-  async execute({ id, title, zip_code, cost, deadline }: IUpdateProject) {
+export class FinishProjectUseCase {
+  async execute({ id }: IFinishProject) {
     try {
       const project = await prisma.project.update({
         where: { id },
-        data: {
-          title,
-          zip_code,
-          cost,
-          deadline: new Date(deadline),
-        },
+        data: { done: true },
       });
 
       return project;
