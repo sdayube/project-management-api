@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres
+    container_name: project-manager-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: project_manager
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/data/postgres
+
+volumes:
+  pgdata:
+    driver: local
