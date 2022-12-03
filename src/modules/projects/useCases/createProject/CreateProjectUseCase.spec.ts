@@ -1,9 +1,5 @@
-import { NextFunction, Request, Response } from 'express';
-
 import { CreateProjectUseCase } from './CreateProjectUseCase';
 import { prisma } from '@database/prismaClient';
-
-jest.mock('bcrypt');
 
 describe('Create project', () => {
   const generateProject = () => ({

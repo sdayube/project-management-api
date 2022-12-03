@@ -1,5 +1,3 @@
-import { NextFunction, Request, Response } from 'express';
-
 import { UserAuthUseCase } from './UserAuthUseCase';
 import { prisma } from '@database/prismaClient';
 
