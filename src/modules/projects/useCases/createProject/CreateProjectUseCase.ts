@@ -4,7 +4,7 @@ import { HttpError } from '../../../../errors/HttpError';
 interface ICreateProject {
   title: string;
   zip_code: number;
-  deadline: Date;
+  deadline: string;
   cost: number;
   username: string;
 }
