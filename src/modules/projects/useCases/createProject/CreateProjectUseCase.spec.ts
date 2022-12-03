@@ -17,7 +17,6 @@ describe('Create project', () => {
   beforeEach(() => {
     jest.spyOn(prisma.project, 'findFirst').mockResolvedValue(null);
     jest.spyOn(prisma.project, 'create').mockResolvedValue(generateProject());
-    jest.requireMock('bcrypt').hash = jest.fn().mockResolvedValue('123456');
   });
 
   it('should throw if project already exists', async () => {
