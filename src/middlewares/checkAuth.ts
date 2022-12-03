@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
+import { prisma } from '../database/prismaClient';
 import { HttpError } from '../errors/HttpError';
 
 export async function checkAuth(
@@ -8,6 +9,14 @@ export async function checkAuth(
   next: NextFunction,
 ) {
   const authHeader = request.headers.authorization;
+  const username = request.headers.username as string;
+
+  if (typeof username !== 'string' || username === '') {
+    throw new HttpError(
+      'A valid username must be passed as request header',
+      400,
+    );
+  }
 
   if (!authHeader) {
     throw new HttpError('JWT token is missing', 401);
@@ -18,10 +27,23 @@ export async function checkAuth(
   try {
     const { sub } = verify(token, process.env.JWT_SECRET!);
 
-    request.userId = sub as string;
+    const user = await prisma.user.findUnique({
+      where: { username },
+    });
+
+    if (!user) {
+      throw new HttpError('User not found!', 404);
+    }
+
+    if (user.id !== (sub as string)) {
+      throw new HttpError('User not authorized!', 401);
+    }
 
     return next();
   } catch (error) {
+    if (error instanceof HttpError) {
+      throw error;
+    }
     throw new HttpError('Invalid JWT token', 401);
   }
 }
