@@ -24,7 +24,7 @@ router.post('/auth', userAuthController.handle);
 
 // Projects
 const createProjectController = new CreateProjectController();
-router.post('/projects', checkAuth, createProjectController.handle);
+router.post('/project', checkAuth, createProjectController.handle);
 
 const findAllProjectsFromUserController =
   new FindAllProjectsFromUserController();
