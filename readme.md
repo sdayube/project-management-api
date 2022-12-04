@@ -14,6 +14,7 @@ Para inicializar a aplicação:
 - Execute o comando `docker-compose up` 
   - O **banco de dados** irá rodar na porta **5432** do localhost
 - Execute o comando `yarn install` para instalar as dependencias do projeto
+- Renomeie a pasta `example.env` para `.env` ou crie uma pasta `.env` com as mesmas variáveis de ambiente definidas
 - Execute o comando `yarn prisma migrate dev` para rodar as migrations
 - Execute o comando `yarn dev` para rodar a aplicação
   - A **aplicação** irá rodar na porta **3333** do localhost
