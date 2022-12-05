@@ -14,6 +14,7 @@ app.all('*', (req, res, next) => {
     'Access-Control-Allow-Headers',
     'Content-Type, Authorization, username, id',
   );
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   next();
 });
 
