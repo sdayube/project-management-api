@@ -1,6 +1,6 @@
 # Project Manager API
 
-Essa API foi desenvolvida como desafio técnico para a empresa Fontes Promotora, referente à parte do back-end, em paralelo a um [projeto em React no front-end](https://github.com/sdayube/react-project-manager).
+Essa API foi desenvolvida como desafio técnico para a empresa Fontes Promotora, referente à parte do back-end, em paralelo a um [projeto em React no front-end](https://github.com/sdayube/project-manager).
 
 Por se tratar de uma API simples, decidi por uma arquitetura modular, que isola os casos de uso por domínio e funcionalidade.
 
@@ -167,5 +167,4 @@ Utilizando o id passado como parametro na url, e apenas após autenticar o usuá
 A aplicação inclui testes com Jest para todos os casos de uso.
 
 Para rodar os testes, é necessário ter o yarn instalado, pois esse foi o gerenciador de pacotes utilizado nesse projeto. Feito isso, execute os comandos:
-  - `yarn install`
   - `yarn test`
